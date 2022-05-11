@@ -28,7 +28,7 @@ const Info = () => {
         },
     ]
     return (
-        <div>
+        <div  className='w-11/12 mx-auto'>
             <div className=' grid grid-cols-1 lg:grid-cols-3 gap-5'>
             {
                 infoItem.map(info => <div key={info.id} class={`card lg:card-side px-0 py-5 lg:px-5 lg:py-0 shadow-xl ${info.bgColor}`}>

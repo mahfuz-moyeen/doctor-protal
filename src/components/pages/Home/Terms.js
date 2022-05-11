@@ -2,7 +2,7 @@ import React from 'react';
 import treatment from '../../../assets/images/treatment.png'
 const Terms = () => {
     return (
-        <div className={`hero min-h-screen px-10 my-28`} >
+        <div className={`hero min-h-screen px-10 my-28 w-11/12 mx-auto`} >
             <div className="hero-content flex-col lg:flex-row-reverse gap-10">
                 <div>
                     <h1 className="text-5xl font-bold">Exceptional Dental Care, on Your Terms</h1>
