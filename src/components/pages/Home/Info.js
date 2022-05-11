@@ -31,10 +31,10 @@ const Info = () => {
         <div  className='w-11/12 mx-auto'>
             <div className=' grid grid-cols-1 lg:grid-cols-3 gap-5'>
             {
-                infoItem.map(info => <div key={info.id} class={`card lg:card-side px-0 py-5 lg:px-5 lg:py-0 shadow-xl ${info.bgColor}`}>
+                infoItem.map(info => <div key={info.id} className={`card lg:card-side px-0 py-5 lg:px-5 lg:py-0 shadow-xl ${info.bgColor}`}>
                     <figure><img src={info.icon} alt="Album" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-white">{info.name}</h2>
+                    <div className="card-body">
+                        <h2 className="card-title text-white">{info.name}</h2>
                         <p className='text-gray-200'>{info.detail}</p>
                     </div>
                 </div>)

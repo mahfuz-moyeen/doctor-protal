@@ -35,12 +35,12 @@ const Services = () => {
                 {
                     services.map(service => <div
                         key={service.id}
-                        class="card max-w-sm lg:max-w-lg mx-auto bg-base-100 shadow-xl">
-                        <figure class="px-10 pt-10">
-                            <img src={service.icon} alt={service.title} class="rounded-xl" />
+                        className="card max-w-sm lg:max-w-lg mx-auto bg-base-100 shadow-xl">
+                        <figure className="px-10 pt-10">
+                            <img src={service.icon} alt={service.title} className="rounded-xl" />
                         </figure>
-                        <div class="card-body items-center text-center">
-                            <h2 class="card-title">{service.title}</h2>
+                        <div className="card-body items-center text-center">
+                            <h2 className="card-title">{service.title}</h2>
                             <p>{service.details}</p>
                         </div>
                     </div>
