@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import chair from '../../../assets/images/chair.png'
 import bg from '../../../assets/images/bg.png'
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import { format } from 'date-fns';
 
 const css = `
 .my-selected:not([disabled]) { 
@@ -25,8 +24,7 @@ const css = `
 }
 `;
 
-const AppointmentBanner = () => {
-    const [date, setDate] = useState(new Date())
+const AppointmentBanner = ({date, setDate}) => {
 
     return (
         <section>
@@ -46,9 +44,6 @@ const AppointmentBanner = () => {
                     </div>
                 </div>
             </div >
-            <div className='my-10 text-center'>
-                <h2 className='text-lg font-semibold text-primary'>Available Appointments on {format(date, 'PP')}</h2>
-            </div>
         </section>
     );
 };
