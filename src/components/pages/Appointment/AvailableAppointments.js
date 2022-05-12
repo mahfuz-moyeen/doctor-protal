@@ -34,7 +34,7 @@ const AvailableAppointments = ({ date }) => {
                                 <p className='text-red-500'>No Available</p>
                             }
                             <p className='text-sm font-bold'>{service.slots.length} {service.slots.length > 1 ? 'SPACES' : 'SPACE'} AVAILABLE</p>
-                            <button className="btn btn-primary text-white bg-gradient-to-r from-secondary to-primary border-0">Book Appointment</button>
+                            <button disabled={service.slots.length === 0} className="btn btn-primary text-white bg-gradient-to-r from-secondary to-primary border-0">Book Appointment</button>
                         </div>
                     </div>
                     )
