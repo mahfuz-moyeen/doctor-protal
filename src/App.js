@@ -5,6 +5,7 @@ import ContactUs from './components/pages/ContactUs/ContactUs';
 import Home from './components/pages/Home/Home';
 import Login from './components/pages/Login/Login';
 import Reviews from './components/pages/Reviews/Reviews';
+import Footer from './components/Shared/Menubar/Footer/Footer';
 import Menubar from './components/Shared/Menubar/Menubar'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/login' element={<Login />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

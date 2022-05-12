@@ -9,9 +9,9 @@ const ContactUs = () => {
             </div>
             <div>
                 <form className='flex flex-col justify-center items-center gap-5 pb-10'>
-                    <input type="email" name='email' placeholder="Email Address" class="input w-full max-w-xs" />
-                    <input type="text" name='Subject' placeholder="Subject" class="input w-full max-w-xs" />
-                    <textarea class="textarea w-full max-w-xs" name='message' placeholder="Your message"></textarea>
+                    <input type="email" name='email' placeholder="Email Address" className="input w-full max-w-xs" />
+                    <input type="text" name='Subject' placeholder="Subject" className="input w-full max-w-xs" />
+                    <textarea className="textarea w-full max-w-xs" name='message' placeholder="Your message"></textarea>
                     <input type='submit' value='Submit' className='btn btn-primary text-white'/>
                 </form>
             </div>
