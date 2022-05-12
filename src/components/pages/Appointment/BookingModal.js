@@ -1,9 +1,29 @@
 import { format } from 'date-fns';
 import React from 'react';
 
-const BookingModal = ({ treatment, date }) => {
+const BookingModal = ({ treatment, date, setTreatment }) => {
     const { name, slots } = treatment;
-    // console.log(treatment);
+
+    const handleModalForm = event => {
+        event.preventDefault();
+        const date = event.target.date.value;
+        const time = event.target.time.value;
+        const presentName = event.target.name.value;
+        const number = event.target.number.value;
+        const email = event.target.email.value;
+
+        console.log(`
+        ${name}
+        ${date}
+        ${time}
+        ${presentName}
+        ${number}
+        ${email}
+        `)
+        event.target.reset();
+        setTreatment(null)
+    }
+
     return (
         <div>
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
@@ -12,12 +32,18 @@ const BookingModal = ({ treatment, date }) => {
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="font-bold text-lg text-primary">{name}</h3>
 
-                    <form className='flex flex-col justify-center items-center gap-5 mt-10'>
-                        <input type="test" name='date' className="input w-full border-base-300" value={format(date, 'PP')} disabled />
+                    <form
+                        onSubmit={handleModalForm}
+                        className='flex flex-col justify-center items-center gap-5 mt-10'>
+                        <input type="text" name='date' className="input w-full border-base-300" value={format(date, 'PP')} disabled />
 
-                        <select className="select w-full">
+                        <select name='time' className="select w-full">
                             {
-                                slots.map(slot => <option key={slot} className='text-sm'>{slot}</option>)
+                                slots.map(slot => <option
+                                    value={slot}
+                                    key={slot}
+                                    className='text-sm'
+                                >{slot}</option>)
                             }
                         </select>
 
