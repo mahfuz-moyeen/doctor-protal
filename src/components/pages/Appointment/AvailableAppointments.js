@@ -19,13 +19,15 @@ const AvailableAppointments = ({ date }) => {
                 {
                     services.map(service => <div
                         key={service.id}
-                        className="card max-w-sm lg:max-w-lg mx-auto bg-base-100 shadow-xl text-center">
+                        className="card px-5 max-w-sm lg:max-w-lg mx-auto bg-base-100 shadow-xl text-center">
                         <h1 className='text-primary text-lg font-semibold pt-5'>{service.name}</h1>
-                        <div className="card-body items-center text-center">
-                            {
-                                service.slots.map(slot => <p className='text-sm'>{slot}</p>)
-                            }
-                            <p className='text-sm font-blod'>{service.slots.length} SPACES AVAILABLE</p>
+                        <div className="card-body items-center text-center pt-0">
+                            <select class="select w-full max-w-xs">
+                                {
+                                    service.slots.map(slot => <option className='text-sm'>{slot}</option>)
+                                }
+                            </select>
+                            <p className='text-sm font-bold'>{service.slots.length} {service.slots.length > 1 ? 'SPACES' : 'SPACE'} AVAILABLE</p>
                             <button className="btn btn-primary text-white bg-gradient-to-r from-secondary to-primary border-0">Book Appointment</button>
                         </div>
                     </div>
