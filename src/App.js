@@ -10,7 +10,7 @@ import Menubar from './components/Shared/Menubar/Menubar'
 
 function App() {
   return (
-    <div >
+    <div className='max-w-[1440px] mx-auto' >
       <Menubar />
       <Routes>
         <Route path='/' element={<Home />} />

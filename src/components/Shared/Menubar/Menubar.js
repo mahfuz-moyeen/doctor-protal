@@ -10,7 +10,7 @@ const Menubar = () => {
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/login'>Login</Link></li></>
     return (
-        <div className="navbar bg-base-100 container mx-auto">
+        <div className="navbar bg-base-100 bg-opacity-80 sticky top-0 z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex="0" className="btn btn-ghost lg:hidden">
