@@ -1,20 +1,22 @@
 import React from 'react';
+import ContactUs from '../ContactUs/ContactUs';
 
 import Banner from './Banner';
 import Info from './Info';
 import MakeAppointment from './makeAppointment';
 import Services from './Services';
 import Terms from './Terms';
-import Testimoials from './Testimoials';
+import Testimonials from './Testimonials';
 const Home = () => {
     return (
         <div>
             <Banner />
             <Info />
             <Services />
-            <Terms/>
-            <MakeAppointment/>
-            <Testimoials/>
+            <Terms />
+            <MakeAppointment />
+            <Testimonials />
+            <ContactUs />
         </div>
     );
 };
