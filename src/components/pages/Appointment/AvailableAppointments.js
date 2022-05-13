@@ -7,7 +7,7 @@ const AvailableAppointments = ({ date }) => {
     const [treatment, setTreatment] = useState(null);
 
     useEffect(() => {
-        fetch('services.json')
+        fetch('http://localhost:5000/appointments')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
@@ -15,14 +15,14 @@ const AvailableAppointments = ({ date }) => {
     return (
         <section className='py-10'>
             <div className='my-10 text-center'>
-                <h2 className='text-lg font-semibold text-primary'>Available Appointments on {format(date, 'PP')}</h2>
+                <h2 className='text-lg font-semibold text-secondary'>Available Appointments on {format(date, 'PP')}</h2>
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
                 {
                     services.map(service => <div
                         key={service._id}
                         className="card px-5 max-w-sm lg:max-w-lg mx-auto bg-base-100 shadow-xl text-center">
-                        <h1 className='text-primary text-lg font-semibold pt-5'>{service.name}</h1>
+                        <h1 className=' text-secondary text-lg font-semibold pt-5'>{service.name}</h1>
                         <div className="card-body items-center text-center pt-0">
                             {
                                 service.slots.length > 0

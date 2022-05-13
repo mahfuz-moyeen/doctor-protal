@@ -20,7 +20,11 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
         ${number}
         ${email}
         `)
+        
+        // clear form 
         event.target.reset();
+
+        // close modal 
         setTreatment(null)
     }
 
@@ -30,7 +34,7 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
             <div className="modal modal-middle">
                 <div className="modal-box">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="font-bold text-lg text-primary">{name}</h3>
+                    <h3 className="font-bold text-lg text-secondary">{name}</h3>
 
                     <form
                         onSubmit={handleModalForm}
