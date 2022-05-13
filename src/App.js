@@ -4,6 +4,7 @@ import Appointment from './components/pages/Appointment/Appointment';
 import ContactUs from './components/pages/ContactUs/ContactUs';
 import Home from './components/pages/Home/Home';
 import Login from './components/pages/Login/Login';
+import Register from './components/pages/Login/Register';
 import Reviews from './components/pages/Reviews/Reviews';
 import Footer from './components/Shared/Footer/Footer';
 import Menubar from './components/Shared/Menubar/Menubar'
@@ -19,6 +20,7 @@ function App() {
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/about' element={<About />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
       <Footer />
     </div>

@@ -1,26 +1,26 @@
 import React from 'react';
 import SocialLogin from './SocialLogin';
 import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Spinner from '../../Shared/Spinner.js/Spinner';
 import { Link, useNavigate } from 'react-router-dom';
 
-
-const Login = () => {
+const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useSignInWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
+
+    const [updateProfile, updating] = useUpdateProfile(auth);
 
     const navigate = useNavigate();
 
-
-    if (loading) {
+    if (loading || updating) {
         return <Spinner />
     }
 
@@ -28,8 +28,9 @@ const Login = () => {
         navigate('/');
     }
 
-    const onSubmit = data => {
-        signInWithEmailAndPassword(data.email, data.password);
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName:data.name });
     };
 
     return (
@@ -38,10 +39,31 @@ const Login = () => {
                 <div className="hero min-h-screen lg:max-w-md mx-auto max-w-sm">
                     <div className="card  w-full shadow-2xl bg-base-100 my-10">
                         <div className="card-body">
-                            <h1 className='text-center text-2xl'>Login</h1>
+                            <h1 className='text-center text-2xl'>Register</h1>
 
 
                             <form onSubmit={handleSubmit(onSubmit)}>
+
+                                {/* name  */}
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Name</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Your Name"
+                                        className="input input-bordered"
+                                        {...register("name", {
+                                            required: {
+                                                value: true,
+                                                message: 'Name is Required'
+                                            }
+                                        })}
+                                    />
+                                    <label className="label">
+                                        {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
+                                    </label>
+                                </div>
 
                                 {/* email  */}
                                 <div className="form-control">
@@ -96,10 +118,6 @@ const Login = () => {
                                     </label>
                                 </div>
 
-
-                                <label className="label">
-                                    <button href="#" className="label-text-alt link link-hover">Forgot password?</button>
-                                </label>
                                 {
                                     error ?
                                         <p className='text-center text-red-500 my-2'>{error.message.slice(22)}</p>
@@ -112,8 +130,8 @@ const Login = () => {
 
                             </form>
 
-                            <p className='text-center my-2'>New to Doctors Portal? 
-                                <Link to='/register' className='text-primary' >Create new account</Link>
+                            <p className='text-center my-2'>Already have account 
+                                <Link to='/login' className='text-primary' > Login now</Link>
                             </p>
 
                             <SocialLogin />
@@ -125,4 +143,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;

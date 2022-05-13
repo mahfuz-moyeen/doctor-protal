@@ -2,13 +2,14 @@ import React from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init'
+import Spinner from '../../Shared/Spinner.js/Spinner';
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
     const navigate = useNavigate();
 
     if (loading) {
-        return <p>loading...</p>
+        return <Spinner />
     }
 
     if (user) {
