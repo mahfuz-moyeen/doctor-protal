@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SocialLogin from './SocialLogin';
 import { useForm } from "react-hook-form";
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Spinner from '../../Shared/Spinner.js/Spinner';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -17,10 +17,18 @@ const Register = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
 
     const [updateProfile, updating] = useUpdateProfile(auth);
+    const [sendEmailVerification, sending] = useSendEmailVerification(auth);
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    }, [user,navigate,from])
+
 
     if (loading) {
         return <Spinner />
@@ -30,13 +38,10 @@ const Register = () => {
         navigate(from, { replace: true });
     }
 
-    if (user) {
-        navigate('/');
-    }
-
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName:data.name });
+        await sendEmailVerification();
     };
 
     return (

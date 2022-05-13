@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SocialLogin from './SocialLogin';
 import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Spinner from '../../Shared/Spinner.js/Spinner';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -15,23 +15,35 @@ const Login = () => {
         user,
         loading,
         error,
-      ] = useSignInWithEmailAndPassword(auth);
+    ] = useSignInWithEmailAndPassword(auth);
+
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
-    if (loading) {
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    }, [user, navigate, from])
+
+    if (loading || sending) {
         return <Spinner />
     }
 
-    if (user) {
-        navigate(from, { replace: true });
-    }
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password);
     };
+
+    const handleForgetPassword = event => {
+        event.preventDefault();
+        const email = event.target.email.value;
+        console.log(email);
+        sendPasswordResetEmail(email);
+    }
 
     return (
         <div>
@@ -98,8 +110,10 @@ const Login = () => {
                                 </div>
 
 
-                                <label className="label">
-                                    <button href="#" className="label-text-alt link link-hover">Forgot password?</button>
+                                <label
+                                    htmlFor="forget-password-modal"
+                                    className="label label-text-alt link link-hover">
+                                    Forgot password?
                                 </label>
                                 {
                                     error ?
@@ -113,7 +127,7 @@ const Login = () => {
 
                             </form>
 
-                            <p className='text-center my-2'>New to Doctors Portal? 
+                            <p className='text-center my-2'>New to Doctors Portal?
                                 <Link to='/register' className='text-primary' >Create new account</Link>
                             </p>
 
@@ -122,6 +136,26 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <div>
+                <input type="checkbox" id="forget-password-modal" className="modal-toggle" />
+                <div className="modal modal-middle">
+                    <div className="modal-box">
+                        <label htmlFor="forget-password-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+
+                        <h3 className="font-bold text-xl text-center mt-10 text-accent">Forget Password ?</h3>
+                        <p className='text-center px-10 py-3'>Please enter your email address to send reset password mail.</p>
+                        <form
+                            onSubmit={handleForgetPassword}
+                            className='flex flex-col justify-center items-center gap-5 mt-10'>
+
+                            <input type="email" name='email' placeholder='Your Email' className="input w-full border-base-300" required />
+                            
+                            <input type='submit' value='Send' className='btn btn-accent text-base' />
+                        </form>
+
+                    </div>
+                </div>
+            </div >
         </div>
     );
 };
