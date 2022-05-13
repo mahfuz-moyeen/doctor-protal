@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Spinner from '../../Shared/Spinner.js/Spinner';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -19,9 +19,15 @@ const Register = () => {
     const [updateProfile, updating] = useUpdateProfile(auth);
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
-    if (loading || updating) {
+    if (loading) {
         return <Spinner />
+    }
+
+    if (user) {
+        navigate(from, { replace: true });
     }
 
     if (user) {

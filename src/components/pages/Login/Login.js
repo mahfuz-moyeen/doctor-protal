@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Spinner from '../../Shared/Spinner.js/Spinner';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
@@ -18,14 +18,15 @@ const Login = () => {
       ] = useSignInWithEmailAndPassword(auth);
 
     const navigate = useNavigate();
-
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     if (loading) {
         return <Spinner />
     }
 
     if (user) {
-        navigate('/');
+        navigate(from, { replace: true });
     }
 
     const onSubmit = data => {
