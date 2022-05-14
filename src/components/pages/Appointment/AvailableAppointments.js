@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { format } from 'date-fns';
 import BookingModal from './BookingModal';
+import { useQuery } from 'react-query';
+import Spinner from '../../Shared/Spinner.js/Spinner';
 
 const AvailableAppointments = ({ date }) => {
-    const [services, setServices] = useState([]);
     const [treatment, setTreatment] = useState(null);
 
-    useEffect(() => {
-        fetch('https://doctor-portal001.herokuapp.com/appointments')
-            .then(res => res.json())
-            .then(data => setServices(data))
-    }, [])
+    const formateDate = format(date, 'PP')
+
+    const { isLoading, data: services, refetch } = useQuery(('available', formateDate), () => fetch(`https://doctor-portal001.herokuapp.com/available?date=${formateDate}`)
+        .then(res => res.json())
+    )
+
+    if (isLoading) {
+        return <Spinner />
+    }
 
     return (
         <section className='py-10'>
@@ -19,7 +24,7 @@ const AvailableAppointments = ({ date }) => {
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
                 {
-                    services.map(service => <div
+                    services?.map(service => <div
                         key={service._id}
                         className="card px-5 max-w-sm lg:max-w-lg mx-auto bg-base-100 shadow-xl text-center">
                         <h1 className=' text-secondary text-lg font-semibold pt-5'>{service.name}</h1>
@@ -47,10 +52,11 @@ const AvailableAppointments = ({ date }) => {
                     )
                 }
             </div>
-            {treatment && <BookingModal 
-            treatment={treatment} 
-            setTreatment={setTreatment}
-            date={date} />}
+            {treatment && <BookingModal
+                treatment={treatment}
+                setTreatment={setTreatment}
+                refetch={refetch}
+                date={date} />}
         </section>
     );
 };
