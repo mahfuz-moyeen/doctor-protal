@@ -7,7 +7,7 @@ const Dashboard = () => {
             <input id="dashboard" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex gap-2">
                 {/* <!-- Page content here --> */}
-                    <label htmlFor="dashboard" className="sticky top-0 h-screen bg-accent p-2 flex items-center text-base-100 text-xl font-bold drawer-button lg:hidden">></label>
+                    <label htmlFor="dashboard" className="sticky top-0 h-screen bg-accent p-2 flex items-center text-base-100 text-xl font-bold drawer-button lg:hidden"> &#62;</label>
 
                 <Outlet />
             </div>
