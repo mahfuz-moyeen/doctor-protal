@@ -16,8 +16,8 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
-    const [updateProfile] = useUpdateProfile(auth);
-    const [sendEmailVerification] = useSendEmailVerification(auth);
+    const [updateProfile, updating] = useUpdateProfile(auth);
+    const [sendEmailVerification, sending] = useSendEmailVerification(auth);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -30,7 +30,7 @@ const Register = () => {
     }, [user,navigate,from])
 
 
-    if (loading) {
+    if (loading || updating || sending) {
         return <Spinner />
     }
 
