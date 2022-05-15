@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateP
 import auth from '../../../firebase.init';
 import Spinner from '../../Shared/Spinner.js/Spinner';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../../hooks/useToken';
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -19,6 +20,8 @@ const Register = () => {
     const [updateProfile, updating] = useUpdateProfile(auth);
     const [sendEmailVerification, sending] = useSendEmailVerification(auth);
 
+    const [token] = useToken(user);
+
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -27,20 +30,20 @@ const Register = () => {
         if (user) {
             navigate(from, { replace: true });
         }
-    }, [user,navigate,from])
+    }, [user, navigate, from])
 
 
     if (loading || updating || sending) {
         return <Spinner />
     }
 
-    if (user) {
+    if (token) {
         navigate(from, { replace: true });
     }
 
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName:data.name });
+        await updateProfile({ displayName: data.name });
         await sendEmailVerification();
     };
 
@@ -141,7 +144,7 @@ const Register = () => {
 
                             </form>
 
-                            <p className='text-center my-2'>Already have account 
+                            <p className='text-center my-2'>Already have account
                                 <Link to='/login' className='text-primary' > Login now</Link>
                             </p>
 
