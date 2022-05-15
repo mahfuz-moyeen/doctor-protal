@@ -14,8 +14,11 @@ const Menubar = () => {
     const menuList = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/appointment'>Appointment</NavLink ></li>
+        {
+            user && <li><NavLink to='/dashboard'>Dashboard</NavLink ></li>
+        }
         <li><NavLink to='/reviews'>Reviews</NavLink ></li>
-        <li><NavLink to='/contact-us'>Contact Us</NavLink ></li>
+        <li><NavLink to='/contact-us'>Contact</NavLink ></li>
         <li><NavLink to='/about'>About</NavLink ></li>
         {
             user?.uid ?
