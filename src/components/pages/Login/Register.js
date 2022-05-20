@@ -139,7 +139,7 @@ const Register = () => {
                                         <></>
                                 }
                                 <div className="form-control mt-6">
-                                    <input type='submit' value='Login' className="btn btn-accent text-base-100" />
+                                    <input type='submit' value='Register' className="btn btn-accent text-base-100" />
                                 </div>
 
                             </form>
