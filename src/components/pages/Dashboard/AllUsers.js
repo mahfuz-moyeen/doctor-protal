@@ -4,7 +4,7 @@ import Spinner from '../../Shared/Spinner.js/Spinner';
 import UserRow from './UserRow';
 
 const AllUsers = () => {
-    const { isLoading, data: users, refetch } = useQuery(('users'), () => fetch(`http://localhost:5000/users`, {
+    const { isLoading, data: users, refetch } = useQuery(('users'), () => fetch(`https://doctor-portal001.herokuapp.com/users`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`

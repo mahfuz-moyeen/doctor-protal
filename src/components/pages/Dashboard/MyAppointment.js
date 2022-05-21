@@ -8,7 +8,7 @@ const MyAppointment = () => {
     const [booking, setBooking] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/bookings?email=${user.email}`, {
+        fetch(`https://doctor-portal001.herokuapp.com/bookings?email=${user.email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('token')}`

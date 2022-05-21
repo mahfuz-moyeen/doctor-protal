@@ -11,7 +11,7 @@ const stripePromise = loadStripe('pk_test_51L1p8ACcQVA8yAkmETfwkRuFoyz5y3xpDlFcO
 const Payment = () => {
     const { id } = useParams();
 
-    const { data: appointment, isLoading } = useQuery(['payment', id], () => fetch(`http://localhost:5000/payment/${id}`, {
+    const { data: appointment, isLoading } = useQuery(['payment', id], () => fetch(`https://doctor-portal001.herokuapp.com/payment/${id}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('token')}`
