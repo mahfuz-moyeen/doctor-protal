@@ -101,7 +101,7 @@ const CheckoutForm = ({ appointment }) => {
                     setProcessing(false);
                     console.log(data);
                 })
-
+            console.log(paymentMethod, processing);
         }
     };
 
