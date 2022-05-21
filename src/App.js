@@ -18,6 +18,7 @@ import AllUsers from './components/pages/Dashboard/AllUsers';
 import RequireAdmin from './components/pages/Login/RequireAdmin';
 import AddDoctor from './components/pages/Dashboard/AddDoctor';
 import ManageDoctor from './components/pages/Dashboard/ManageDoctor';
+import Payment from './components/pages/Dashboard/Payment';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route index element={<MyAppointment />} />
           <Route path='my-appointment' element={<MyAppointment />} />
           <Route path='my-reviews' element={<MyReviews />} />
+          <Route path='payment/:id' element={<Payment />} />
           <Route path='users' element={<RequireAdmin><AllUsers /></RequireAdmin>} />
           <Route path='add-doctor' element={<RequireAdmin><AddDoctor /></RequireAdmin>} />
           <Route path='manage-doctor' element={<RequireAdmin><ManageDoctor /></RequireAdmin>} />

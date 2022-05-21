@@ -41,6 +41,7 @@ const AvailableAppointments = ({ date }) => {
                                     <p className='text-red-500'>No Available on {format(date, 'PP')}</p>
                             }
                             <p className='text-sm font-bold'>{service.slots.length} {service.slots.length > 1 ? 'SPACES' : 'SPACE'} AVAILABLE</p>
+                            <p><small>Price: ${service.price}</small></p>
 
                             <label
                                 htmlFor="booking-modal"

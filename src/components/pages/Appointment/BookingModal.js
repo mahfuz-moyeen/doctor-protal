@@ -4,8 +4,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 
-const BookingModal = ({ treatment, date, setTreatment,refetch }) => {
-    const { name, slots } = treatment;
+const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
+    const { name, slots, price } = treatment;
 
     const [user] = useAuthState(auth);
 
@@ -22,6 +22,7 @@ const BookingModal = ({ treatment, date, setTreatment,refetch }) => {
             bookingName: name,
             date: date,
             time: time,
+            price: price,
             patientName: patientName,
             email: email,
             phone: phone
@@ -72,6 +73,8 @@ const BookingModal = ({ treatment, date, setTreatment,refetch }) => {
                                 >{slot}</option>)
                             }
                         </select>
+
+                        <label className="input w-full bg-base-300 pt-2">Price: ${price}</label>
 
                         <input type="name" name='name' placeholder="Full Name" className="input w-full border-base-300" value={user?.displayName} disabled required />
 

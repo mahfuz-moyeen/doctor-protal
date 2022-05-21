@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 // import { useQuery } from 'react-query';
 import auth from '../../../firebase.init';
 // import Spinner from '../../Shared/Spinner.js/Spinner';
@@ -62,6 +63,7 @@ const MyAppointment = () => {
                             <th>Treatment</th>
                             <th>Date</th>
                             <th>Time</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,11 +74,17 @@ const MyAppointment = () => {
                                 <td>{book.bookingName}</td>
                                 <td>{book.date}</td>
                                 <td>{book.time}</td>
+                                <td>
+                                    {(book.price && !book.paid) && <Link to={`/dashboard/payment/${book._id}`} className='btn btn-sm btn-success'>Pay Now</Link>}
+
+                                    {(book.price && book.paid) && <p><span className='text-success'>Paid</span></p>}
+
+                                </td>
                             </tr>)}
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
 
