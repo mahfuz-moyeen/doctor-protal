@@ -1,7 +1,12 @@
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import Spinner from '../../Shared/Spinner.js/Spinner';
+import CheckoutForm from './CheckoutForm';
+
+const stripePromise = loadStripe('pk_test_51L1p8ACcQVA8yAkmETfwkRuFoyz5y3xpDlFcO7SauwYSOwcE1FaOpEDLqwqVBpbZYyA9kIFweD00JJfAlIHmYE2z00oq05wA4f');
 
 const Payment = () => {
     const { id } = useParams();
@@ -20,13 +25,7 @@ const Payment = () => {
     return (
         <div className='w-11/12 mx-auto'>
             <h1 className='text-primary text-2xl text-center my-10'>Payment Now</h1>
-            {/* <h1 className='text-xl'>{appointment.bookingName}</h1>
-           <p>Date: {appointment.date}</p>
-           <p>Time: {appointment.time}</p>
-           <p>Price: {appointment.price}</p>
-           <p>Patient Name: {appointment.patientName}</p>
-           <p>Email: {appointment.email}</p>
-           <p>Phone: {appointment.phone}</p> */}
+            
             <div>
                 <div className='flex flex-col justify-center items-center'>
                     <div className="card max-w-sm lg:max-w-md bg-base-100 shadow-xl">
@@ -37,13 +36,13 @@ const Payment = () => {
                             <p>Please pay: ${appointment.price}</p>
                         </div>
                     </div>
-                    {/* <div class="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
-                <div class="card-body">
-                    <Elements stripe={stripePromise}>
-                        <CheckoutForm appointment={appointment} />
-                    </Elements>
-                </div>
-            </div> */}
+                    <div className="card w-full my-5 max-w-sm lg:max-w-lg shadow-2xl bg-base-100">
+                        <div className="card-body">
+                            <Elements stripe={stripePromise}>
+                                <CheckoutForm appointment={appointment} />
+                            </Elements>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
