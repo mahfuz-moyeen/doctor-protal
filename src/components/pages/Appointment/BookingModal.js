@@ -27,7 +27,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
             email: email,
             phone: phone
         }
-        fetch('https://doctor-portal-rgekx2xd6-mahfuzmoyeens-projects.vercel.app/booking', {
+        fetch('https://doctor-portal-pi.vercel.app/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -9,7 +9,7 @@ const AvailableAppointments = ({ date }) => {
 
     const formateDate = format(date, 'PP')
 
-    const { isLoading, data: services, refetch } = useQuery(('available', formateDate), () => fetch(`https://doctor-portal-rgekx2xd6-mahfuzmoyeens-projects.vercel.app/available?date=${formateDate}`)
+    const { isLoading, data: services, refetch } = useQuery(('available', formateDate), () => fetch(`https://doctor-portal-pi.vercel.app/available?date=${formateDate}`)
         .then(res => res.json())
     )
 

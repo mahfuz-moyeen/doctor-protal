@@ -8,7 +8,7 @@ const MyAppointment = () => {
     const [booking, setBooking] = useState([]);
 
     useEffect(() => {
-        fetch(`https://doctor-portal-rgekx2xd6-mahfuzmoyeens-projects.vercel.app/bookings?email=${user.email}`, {
+        fetch(`https://doctor-portal-pi.vercel.app/bookings?email=${user.email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('token')}`

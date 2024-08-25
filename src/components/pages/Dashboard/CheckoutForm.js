@@ -14,7 +14,7 @@ const CheckoutForm = ({ appointment }) => {
     const [transactionId, setTransactionId] = useState('');
 
     useEffect(() => {
-        fetch('https://doctor-portal-rgekx2xd6-mahfuzmoyeens-projects.vercel.app/create-payment-intent', {
+        fetch('https://doctor-portal-pi.vercel.app/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -89,7 +89,7 @@ const CheckoutForm = ({ appointment }) => {
                 price: price,
                 phone: phone
             }
-            fetch(`https://doctor-portal-rgekx2xd6-mahfuzmoyeens-projects.vercel.app/booking/${_id}`, {
+            fetch(`https://doctor-portal-pi.vercel.app/booking/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
