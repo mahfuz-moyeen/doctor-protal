@@ -7,7 +7,7 @@ import Spinner from '../../Shared/Spinner.js/Spinner';
 const AddDoctor = () => {
 
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    const { isLoading, data: appointments } = useQuery(('appointments'), () => fetch(`https://doctor-portal001.herokuapp.com/appointments`)
+    const { isLoading, data: appointments } = useQuery(('appointments'), () => fetch(`https://doctor-portal-rgekx2xd6-mahfuzmoyeens-projects.vercel.app/appointments`)
         .then(res => res.json())
     )
 
@@ -45,7 +45,7 @@ const AddDoctor = () => {
                         img: img
                     }
                     // send to your database 
-                    fetch('https://doctor-portal001.herokuapp.com/doctor', {
+                    fetch('https://doctor-portal-rgekx2xd6-mahfuzmoyeens-projects.vercel.app/doctor', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
